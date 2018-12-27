@@ -3,22 +3,28 @@
 namespace bundle\configGenerator;
 
 use engine\Bundle;
-use engine\container\Container;
 
 class ConfigGenerator extends Bundle
 {
     private $configFile = 'config.php';
 
-    private $context;
+    private $context = '
+    <?php
+                    $sqlConfig = [
+                        "host"=>"localhost",
+                        "user"=>"root",
+                        "password"=>"",
+                        "db"=>"plugin_manager"
+                    ];';
 
-    public function __construct(Container $container, $context)
+    public function __construct()
     {
-        $this->context = $context;
+
     }
 
     public function createConfigFile()
     {
-        if(file_exists($this->configFile)){
+        if ($this->checkConfigFile()) {
             unlink($this->configFile);
         }
 
@@ -30,6 +36,17 @@ class ConfigGenerator extends Bundle
     public function createContext()
     {
         $result = fwrite($this->configFile, $this->context);
+
+        return $result;
+    }
+
+    public function checkConfigFile()
+    {
+        $result = false;
+
+        if (file_exists($this->configFile)) {
+            $result = true;
+        }
 
         return $result;
     }

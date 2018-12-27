@@ -16,11 +16,14 @@ class Install extends ParentController {
 
     public function installAction()
     {
-        $sqlConfig = $this->projectInfo['sqlConfig'];
-
         $config = new ConfigGenerator();
-        $config->createConfigFile();
-        $config->createContext();
+        if($config->checkConfigFile()) {
+            $config->createConfigFile();
+            $config->createContext();
+            $this->redirectToController('frontend', 'Install', 'install');
+        }
+
+        $sqlConfig = $this->projectInfo['sqlConfig'];
 
         /** @var TablesGenerator $tableCreator */
         $tableCreator = new TablesGenerator($sqlConfig);

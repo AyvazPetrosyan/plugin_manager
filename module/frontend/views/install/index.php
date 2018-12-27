@@ -8,7 +8,7 @@
             <li><input required="required" type="text"   name="user"     placeholder="user"       value="root"                /></li>
             <li><input                     type="text"   name="password" placeholder="password"   value=""                /></li>
             <li><input required="required" type="text"   name="db"       placeholder="Db name"    value="plugin_manager"                /></li>
-            <li><input                     type="submit" name="submit"                            value="Create Tables"   /></li>
+            <li><input                     type="submit" name="submit"                            value="Install"   /></li>
         </ul>
     </form>
 </div>

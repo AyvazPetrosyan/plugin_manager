@@ -1,16 +1,7 @@
 <?php
 $URL = $_SERVER['REQUEST_URI'];
-$PROJECT_NAME = 'PROJECT';
+$PROJECT_NAME = 'plugin_manager';
 $URL_ELEMENTS_LIST = generateUrl($PROJECT_NAME, explode("/", $URL));
-
-if (empty($sqlConfig)) {
-    $URL_ELEMENTS_LIST[1] = 'frontend';
-    $URL_ELEMENTS_LIST[2] = 'Install';
-    $URL_ELEMENTS_LIST[3] = 'index';
-} else {
-    /*$connect = new \bundle\Connect($sqlConfig);
-    $sqlConnectToDb = $connect->sqlConnectToDb;*/
-}
 
 $URL_INFO = array();
 
@@ -39,6 +30,15 @@ if (empty($URL_ELEMENTS_LIST[4]) || $URL_ELEMENTS_LIST[4] == NULL)
 /*param value*/
 if (empty($URL_ELEMENTS_LIST[5]) || $URL_ELEMENTS_LIST[5] == NULL)
     $URL_ELEMENTS_LIST[5] = "";
+
+if (empty($sqlConfig) && $URL_INFO["controllerName"] != 'Install') {
+    $URL_ELEMENTS_LIST[1] = 'frontend';
+    $URL_ELEMENTS_LIST[2] = 'Install';
+    $URL_ELEMENTS_LIST[3] = 'indexAction';
+} else {
+    /*$connect = new \bundle\Connect($sqlConfig);
+    $sqlConnectToDb = $connect->sqlConnectToDb;*/
+}
 
 $PROJECT_INFO = array();
 $PROJECT_INFO["host"] = gethostname();
