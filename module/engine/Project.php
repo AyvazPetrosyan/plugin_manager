@@ -1,11 +1,15 @@
 <?php
 namespace engine;
 
+use engine\container\Container;
+
 abstract class Project {
 
-    public function __construct()
-    {
+    private $container;
 
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
     }
 
     public function customDebug($param)
@@ -14,5 +18,10 @@ abstract class Project {
             print_r($param);
         echo '</pre>';
         die();
+    }
+
+    protected function getContainer()
+    {
+        return $this->container;
     }
 }

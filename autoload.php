@@ -1,8 +1,5 @@
 <?php
 
-/* doctrine */
-// require_once "vendor/autoload.php";
-
 if( file_exists('config.php') ) {
     require_once 'config.php';
 }
@@ -12,6 +9,7 @@ require_once 'module/engine/Project.php';
 require_once 'module/engine/ParentController.php';
 require_once 'module/engine/ViewManager.php';
 require_once 'module/engine/Bundel.php';
+require_once 'module/engine/Container.php';
 
 /* bundle */
 require_once 'bundle/Connect.php';
@@ -21,6 +19,7 @@ require_once 'bundle/htmlFormBundle/Form.php';
 require_once 'bundle/htmlTableBundle/HtmlTable.php';
 require_once 'bundle/menuTreeBundle/MenuTree.php';
 require_once 'bundle/menuTreeBundle/MenuTreeGenerator.php';
+require_once 'bundle/configGenerator/ConfigGenerator.php';
 
 /* models */
 require_once 'models/ParentModel.php';

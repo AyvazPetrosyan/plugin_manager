@@ -6,7 +6,7 @@ $URL_ELEMENTS_LIST = generateUrl($PROJECT_NAME, explode("/", $URL));
 if (empty($sqlConfig)) {
     $URL_ELEMENTS_LIST[1] = 'frontend';
     $URL_ELEMENTS_LIST[2] = 'Install';
-    $URL_ELEMENTS_LIST[3] = 'install';
+    $URL_ELEMENTS_LIST[3] = 'index';
 } else {
     /*$connect = new \bundle\Connect($sqlConfig);
     $sqlConnectToDb = $connect->sqlConnectToDb;*/
@@ -55,6 +55,7 @@ $PROJECT_INFO['params'][$URL_ELEMENTS_LIST[4]] = $URL_ELEMENTS_LIST[5];
 
 session_start();
 
+$container = new \engine\container\Container($PROJECT_INFO, $URL_INFO);
 $Router = new Router($PROJECT_INFO, $URL_INFO);
 
 function generateUrl($projectName, $requestedUrlElementList = [])
