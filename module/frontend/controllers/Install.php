@@ -17,7 +17,7 @@ class Install extends ParentController {
     public function installAction()
     {
         $config = new ConfigGenerator();
-        if($config->checkConfigFile()) {
+        if(!$config->checkConfigFile()) {
             $config->createConfigFile();
             $config->createContext();
             $this->redirectToController('frontend', 'Install', 'install');

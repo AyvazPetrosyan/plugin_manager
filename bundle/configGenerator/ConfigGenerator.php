@@ -9,7 +9,7 @@ class ConfigGenerator extends Bundle
     private $configFile = 'config.php';
 
     private $context = '
-    <?php
+                <?php
                     $sqlConfig = [
                         "host"=>"localhost",
                         "user"=>"root",
@@ -35,7 +35,9 @@ class ConfigGenerator extends Bundle
 
     public function createContext()
     {
-        $result = fwrite($this->configFile, $this->context);
+        $file = fopen($this->configFile,'w');
+        $result = fwrite($file, $this->context);
+        fclose($file);
 
         return $result;
     }
